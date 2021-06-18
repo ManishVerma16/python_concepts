@@ -1,4 +1,5 @@
 import requests, datetime
+from requests_html import HTML
 
 now = datetime.datetime.now()
 current_date = now.date()
@@ -17,8 +18,15 @@ def url_to_txt(url, filename='world.html', save=False):
 
 url = 'https://www.boxofficemojo.com/year/world/'
 
-url_to_txt(url, save=True)
+html_text = url_to_txt(url, save=True)
 
+r_html = HTML(html=html_text)
+
+table_class = '.imdb-scroll-table'
+
+r_table = r_html.find(table_class)
+
+print(r_table)
 
 
 
